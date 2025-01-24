@@ -73,9 +73,7 @@ const PartPage = () => {
                     В наличии
                   </span>
                 ) : (
-                  <span className={styles.part__info__stock__not}>
-                    Продана
-                  </span>
+                  <span className={styles.part__info__stock__not}>Продана</span>
                 )}
               </span>
               <span className={styles.part__info__code}>

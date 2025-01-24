@@ -28,10 +28,10 @@ const HeaderBottom = () => {
   }, [router.pathname])
 
   const logoSrc = isMedia580
-    ? "/img/logo1.png"
+    ? '/img/logo1.png'
     : mode === 'dark'
-    ? "/img/logo1.png"
-    : "/img/logo.png"
+    ? '/img/logo1.png'
+    : '/img/logo.png'
 
   return (
     <div className={styles.header__bottom}>
@@ -43,8 +43,7 @@ const HeaderBottom = () => {
               <span
                 className={`${styles.header__logo__link__text} ${darkModeClass}`}
               >
-                My Euro Car
-                Автопригон
+                My Euro Car Автопригон
               </span>
             </a>
           </Link>

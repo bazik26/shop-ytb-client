@@ -8,8 +8,7 @@ const FooterLogo = () => (
       <a className={styles.footer__top__item__logo}>
         <img src="/img/logo1.png" alt="logo" />
         <span className={styles.footer__top__item__logo__text}>
-          My Euro Car
-          Автопригон
+          My Euro Car Автопригон
         </span>
       </a>
     </Link>

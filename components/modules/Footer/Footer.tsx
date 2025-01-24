@@ -61,7 +61,9 @@ const Footer = () => {
           </div>
           <div className={styles.footer__top__item}>
             <h3 className={styles.footer__top__item__title}>Контакты</h3>
-            <ul className={`${styles.footer__top__item__list} ${styles.footer__top__item__contacts}`}>
+            <ul
+              className={`${styles.footer__top__item__list} ${styles.footer__top__item__contacts}`}
+            >
               <li className={styles.footer__top__item__list__item}>
                 <a
                   href="https://yandex.ru/maps/-/CHafFJnl"
@@ -70,23 +72,26 @@ const Footer = () => {
                   rel="noopener noreferrer"
                 >
                   <span>Наш адрес:</span>
-                  <span>Самарская область. Тольятти. Южное шоссе, 24. 445004. Офис 202</span>
+                  <span>
+                    Самарская область. Тольятти. Южное шоссе, 24. 445004. Офис
+                    202
+                  </span>
                   <span>
                     <MarkerSvg />
                   </span>
                 </a>
               </li>
               <li className={styles.footer__top__item__list__item}>
-              <a
-                href="tel:+79111011809"
-                className={styles.footer__top__item__list__item__link}
-              >
-                <span>Наш контактный телефон:</span>
-                <span>+7 (911) 101-18-09</span>
-                <span>
-                  <PhoneSvg />
-                </span>
-              </a>
+                <a
+                  href="tel:+79111011809"
+                  className={styles.footer__top__item__list__item__link}
+                >
+                  <span>Наш контактный телефон:</span>
+                  <span>+7 (911) 101-18-09</span>
+                  <span>
+                    <PhoneSvg />
+                  </span>
+                </a>
               </li>
               <li className={styles.footer__top__item__list__item}>
                 <a

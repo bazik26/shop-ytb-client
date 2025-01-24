@@ -39,11 +39,9 @@ export const boilerManufacturers = [
   'Volvo',
 ].map(createManufacturerCheckboxObj)
 
-export const partsManufacturers = [
-  'Европа',
-  'Сша',
-  'Корея'
-].map(createManufacturerCheckboxObj)
+export const partsManufacturers = ['Европа', 'Сша', 'Корея'].map(
+  createManufacturerCheckboxObj
+)
 
 const checkPriceFromQuery = (price: number) =>
   price && !isNaN(price) && price >= 0 && price <= 10000
