@@ -30,7 +30,7 @@ const DashboardSlider = ({
     slider.forEach((item) => {
       const list = item.querySelector('.slick-list') as HTMLElement
 
-      list.style.height = isMedia560 ? '276px' : '390px'
+      list.style.height = isMedia560 ? '276px' : '490px'
       list.style.padding = '0 5px'
       list.style.marginRight = isMedia560 ? '-8px' : isMedia800 ? '-15px' : '0'
     })
@@ -85,7 +85,7 @@ const DashboardSlider = ({
                 </a>
               </Link>
               <span className={styles.dashboard__slide__code}>
-                Артикул: {item.vendor_code}
+                VIN: {item.vendor_code}
               </span>
               <span className={styles.dashboard__slide__price}>
                 {formatPrice(item.price)} P

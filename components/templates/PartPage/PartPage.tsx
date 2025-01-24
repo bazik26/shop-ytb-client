@@ -70,16 +70,16 @@ const PartPage = () => {
               <span className={styles.part__info__stock}>
                 {boilerPart.in_stock > 0 ? (
                   <span className={styles.part__info__stock__success}>
-                    Есть на складе
+                    В наличии
                   </span>
                 ) : (
                   <span className={styles.part__info__stock__not}>
-                    Нет на складе
+                    Продана
                   </span>
                 )}
               </span>
               <span className={styles.part__info__code}>
-                Артикул: {boilerPart.vendor_code}
+                VIN: {boilerPart.vendor_code}
               </span>
               <button
                 className={`${styles.part__info__btn} ${
@@ -112,7 +112,7 @@ const PartPage = () => {
         {isMobile && (
           <div className={styles.part__accordion}>
             <div className={styles.part__accordion__inner}>
-              <PartAccordion title="Описание">
+              <PartAccordion title="Характеристики">
                 <div
                   className={`${styles.part__accordion__content} ${darkModeClass}`}
                 >
@@ -129,7 +129,7 @@ const PartPage = () => {
                 </div>
               </PartAccordion>
             </div>
-            <PartAccordion title="Совместимость">
+            <PartAccordion title="Описание">
               <div
                 className={`${styles.part__accordion__content} ${darkModeClass}`}
               >

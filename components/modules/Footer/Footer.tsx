@@ -61,39 +61,40 @@ const Footer = () => {
           </div>
           <div className={styles.footer__top__item}>
             <h3 className={styles.footer__top__item__title}>Контакты</h3>
-            <ul
-              className={`${styles.footer__top__item__list} ${styles.footer__top__item__contacts}`}
-            >
-              <li className={styles.footer__top__item__list__item}>
-                <Link href="/contacts" passHref legacyBehavior>
-                  <a className={styles.footer__top__item__list__item__link}>
-                    <span>Наш адрес:</span>
-                    <span>г. Москва, ул. ... д....</span>
-                    <span>
-                      <MarkerSvg />
-                    </span>
-                  </a>
-                </Link>
-              </li>
+            <ul className={`${styles.footer__top__item__list} ${styles.footer__top__item__contacts}`}>
               <li className={styles.footer__top__item__list__item}>
                 <a
-                  href="tel:+780955555555"
+                  href="https://yandex.ru/maps/-/CHafFJnl"
                   className={styles.footer__top__item__list__item__link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <span>Наш контактный телефон:</span>
-                  <span>+7(8095) 555-55-55</span>
+                  <span>Наш адрес:</span>
+                  <span>Самарская область. Тольятти. Южное шоссе, 24. 445004. Офис 202</span>
                   <span>
-                    <PhoneSvg />
+                    <MarkerSvg />
                   </span>
                 </a>
               </li>
               <li className={styles.footer__top__item__list__item}>
+              <a
+                href="tel:+79111011809"
+                className={styles.footer__top__item__list__item__link}
+              >
+                <span>Наш контактный телефон:</span>
+                <span>+7 (911) 101-18-09</span>
+                <span>
+                  <PhoneSvg />
+                </span>
+              </a>
+              </li>
+              <li className={styles.footer__top__item__list__item}>
                 <a
-                  href="mailto:info@zapchasti.com.ru"
+                  href="mailto:myeurocar@mail.ru"
                   className={styles.footer__top__item__list__item__link}
                 >
                   <span>E-mail:</span>
-                  <span>info@zapchasti.com.ru</span>
+                  <span>myeurocar@mail.ru</span>
                   <span>
                     <MailSvg />
                   </span>
@@ -158,7 +159,7 @@ const Footer = () => {
           {isMedia750 && <FooterLogo />}
           <div className={styles.footer__bottom__block}>
             <p className={styles.footer__bottom__block__copyright}>
-              © «Детали для газовых котлов» 2021.
+              © ООО «ТЛТТРАНС» 2019.
             </p>
           </div>
         </div>

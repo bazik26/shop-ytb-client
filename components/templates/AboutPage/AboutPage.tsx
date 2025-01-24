@@ -30,11 +30,11 @@ const AboutPage = () => {
             </p>
           </div>
           <div className={`${styles.about__img} ${styles.about__img__top}`}>
-            <img src="/img/about-img.png" alt="image-1" />
+            <img src="/img/about-img1.jpg" alt="image-1" />
           </div>
-          <div className={`${styles.about__img} ${styles.about__img__bottom}`}>
+          {/* <div className={`${styles.about__img} ${styles.about__img__bottom}`}>
             <img src="/img/about-img-2.png" alt="image-2" />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

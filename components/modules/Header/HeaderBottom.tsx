@@ -13,6 +13,7 @@ import styles from '@/styles/header/index.module.scss'
 
 const HeaderBottom = () => {
   const isMedia950 = useMediaQuery(950)
+  const isMedia580 = useMediaQuery(580) // Проверяем ширину экрана
   const mode = useStore($mode)
   const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
   const router = useRouter()
@@ -26,17 +27,24 @@ const HeaderBottom = () => {
     setDisableCart(false)
   }, [router.pathname])
 
+  const logoSrc = isMedia580
+    ? "/img/logo1.png"
+    : mode === 'dark'
+    ? "/img/logo1.png"
+    : "/img/logo.png"
+
   return (
     <div className={styles.header__bottom}>
       <div className={`container ${styles.header__bottom__container}`}>
         <h1 className={styles.header__logo}>
           <Link href="/dashboard" legacyBehavior passHref>
             <a className={styles.header__logo__link}>
-              <img src="/img/logo.svg" alt="logo" />
+              <img src={logoSrc} alt="logo" />
               <span
                 className={`${styles.header__logo__link__text} ${darkModeClass}`}
               >
-                Детали для газовых котлов
+                My Euro Car
+                Автопригон
               </span>
             </a>
           </Link>

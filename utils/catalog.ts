@@ -10,28 +10,39 @@ const createManufacturerCheckboxObj = (title: string) => ({
 })
 
 export const boilerManufacturers = [
-  'Ariston',
-  'Chaffoteaux&Maury',
-  'Baxi',
-  'Bongioanni',
-  'Saunier Duval',
-  'Buderus',
-  'Strategist',
-  'Henry',
-  'Northwest',
+  'Audi',
+  'BMW',
+  'Chery',
+  'Chevrolet',
+  'Citroen',
+  'Ford',
+  'Geely',
+  'Haval',
+  'Honda',
+  'Hyundai',
+  'Kia',
+  'Land Rover',
+  'Lexus',
+  'Mazda',
+  'Mercedes',
+  'Mitsubishi',
+  'Nissan',
+  'Opel',
+  'Peugeot',
+  'Porsche',
+  'Renault',
+  'Skoda',
+  'Subaru',
+  'Suzuki',
+  'Toyota',
+  'Volkswagen',
+  'Volvo',
 ].map(createManufacturerCheckboxObj)
 
 export const partsManufacturers = [
-  'Azure',
-  'Gloves',
-  'Cambridgeshire',
-  'Salmon',
-  'Montana',
-  'Sensor',
-  'Lesly',
-  'Radian',
-  'Gasoline',
-  'Croatia',
+  'Европа',
+  'Сша',
+  'Корея'
 ].map(createManufacturerCheckboxObj)
 
 const checkPriceFromQuery = (price: number) =>
