@@ -72,54 +72,48 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
     setSpinner(true)
 
     try {
-      // Получаем данные с сервера
-      const data = await getBoilerPartsFx('/boiler-parts?limit=20&offset=0')
+      const offset = isValidOffset ? +query.offset - 1 : 0
+      const filterParams = new URLSearchParams()
 
-      // Проверка на корректность offset
-      if (!isValidOffset) {
-        router.replace({ query: { offset: 1 } })
-        resetPagination(data)
-        return
+      if (isFilterInQuery) {
+        if (router.query.boiler) {
+          filterParams.append('boiler', String(router.query.boiler))
+        }
+        if (router.query.parts) {
+          filterParams.append('parts', String(router.query.parts))
+        }
+        if (router.query.priceFrom && router.query.priceTo) {
+          filterParams.append('priceFrom', String(router.query.priceFrom))
+          filterParams.append('priceTo', String(router.query.priceTo))
+        }
       }
 
-      const offset = +query.offset - 1
-
-      // Проверка на выход за пределы доступных страниц
-      if (+query.offset > Math.ceil(data.count / 20)) {
-        router.push({ query: { ...query, offset: 1 } }, undefined, {
-          shallow: true,
-        })
-        resetPagination(data)
-        return
-      }
-
-      // Получение данных с учетом offset
+      const queryString = filterParams.toString()
       const result = await getBoilerPartsFx(
-        `/boiler-parts?limit=20&offset=${offset}`
+        `/boiler-parts?limit=20&offset=${offset}${
+          queryString ? `&${queryString}` : ''
+        }`
       )
 
-      // Установка данных
       setCurrentPage(offset)
-      setBoilerParts(isFilterInQuery ? filteredBoilerParts : result)
+      setBoilerParts(result) // Обновляем состояние каталога
     } catch (error) {
       toast.error((error as Error).message)
     } finally {
-      setSpinner(false) // Скрываем спиннер без задержки
+      setSpinner(false)
     }
-  }, [
-    router,
-    query.offset,
-    isValidOffset,
-    resetPagination,
-    setCurrentPage,
-    setBoilerParts,
-    filteredBoilerParts,
-    isFilterInQuery,
-  ])
+  }, [router, query.offset, isValidOffset, isFilterInQuery])
 
   useEffect(() => {
     loadBoilerParts()
-  }, [filteredBoilerParts, isFilterInQuery])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    query.offset,
+    router.query.boiler,
+    router.query.parts,
+    router.query.priceFrom,
+    router.query.priceTo,
+  ])
 
   // console.log(boilerParts.rows)
 
@@ -241,30 +235,37 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
 
   const resetFilters = async () => {
     try {
+      setSpinner(true)
+
+      // Получаем весь список товаров
       const data = await getBoilerPartsFx('/boiler-parts?limit=20&offset=0')
-      const params = router.query
 
-      delete params.boiler
-      delete params.parts
-      delete params.priceFrom
-      delete params.priceTo
-      params.first = 'cheap'
+      // Удаляем фильтры из параметров URL
+      router.push(
+        {
+          query: { offset: 1 }, // Устанавливаем начальную страницу
+        },
+        undefined,
+        { shallow: true }
+      )
 
-      router.push({ query: { ...params } }, undefined, { shallow: true })
-
+      // Сбрасываем состояния производителей и фильтров
       setBoilerManufacturers(
         boilerManufacturers.map((item) => ({ ...item, checked: false }))
       )
-
       setPartsManufacturers(
         partsManufacturers.map((item) => ({ ...item, checked: false }))
       )
 
-      setBoilerParts(data)
-      setPriceRange([1000, 9000])
-      setIsPriceRangeChanged(false)
+      // Сбрасываем состояние фильтров
+      setBoilerParts(data) // Устанавливаем весь каталог
+      setPriceRange([1000, 9000]) // Сбрасываем диапазон цен
+      setIsPriceRangeChanged(false) // Убираем флаг изменения цен
+      setIsFilterInQuery(false) // Сбрасываем флаг применения фильтров
     } catch (error) {
       toast.error((error as Error).message)
+    } finally {
+      setSpinner(false)
     }
   }
 

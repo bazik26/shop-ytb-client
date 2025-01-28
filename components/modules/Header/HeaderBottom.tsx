@@ -94,11 +94,13 @@ const HeaderBottom = () => {
     handleCartState()
   }, [handleCartState])
 
-  const logoSrc = isMedia580
-    ? '/img/logo1.png'
-    : mode === 'dark'
-    ? '/img/logo1.png'
-    : '/img/logo.png'
+  let logoSrc = '/img/logo.png'
+
+  if (isMedia580) {
+    logoSrc = '/img/logo1.png'
+  } else if (mode === 'dark') {
+    logoSrc = '/img/logo1.png'
+  }
 
   return (
     <div className={styles.header__bottom}>
