@@ -1,4 +1,7 @@
+import { ReactNode } from "react"
+
 export interface IBoilerPart {
+  title: ReactNode
   id: number
   boiler_manufacturer: string
   price: number

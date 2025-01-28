@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useStore } from 'effector-react'
 import Link from 'next/link'
 import CrumbArrowSvg from '@/components/elements/CrumbArrowSvg/CrumbArrowSvg'
@@ -16,18 +16,35 @@ const Crumb = ({
   const mode = useStore($mode)
   const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
 
-  useEffect(() => {
-    handleTextGenerate()
-  }, [textGenerator])
-
-  const handleTextGenerate = async () => {
+  const handleTextGenerate = useCallback(async () => {
     if (!Boolean(textGenerator)) {
       return
     }
 
-    const finalText = await textGenerator()
-    setText(finalText)
-  }
+    try {
+      const finalText = await textGenerator() // Асинхронный вызов генератора текста
+      setText(finalText) // Установка текста
+    } catch (error) {
+      console.error('Ошибка при генерации текста:', error)
+    }
+  }, [textGenerator]) // Указываем textGenerator как зависимость
+
+  useEffect(() => {
+    handleTextGenerate()
+  }, [handleTextGenerate]) // Используем стабильную функцию как зависимость
+
+  // const handleTextGenerate = async () => {
+  //   if (!Boolean(textGenerator)) {
+  //     return
+  //   }
+
+  //   const finalText = await textGenerator()
+  //   setText(finalText)
+  // }
+
+  // useEffect(() => {
+  //   handleTextGenerate()
+  // }, [handleTextGenerate,textGenerator])
 
   if (last) {
     return (

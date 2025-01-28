@@ -25,29 +25,44 @@ function CatalogPartPage({ query }: { query: IQueryParams }) {
   const lastCrumb = document.querySelector('.last-crumb') as HTMLElement
 
   useEffect(() => {
-    loadBoilerPart()
-  }, [router.asPath])
-
-  useEffect(() => {
     if (lastCrumb) {
       lastCrumb.textContent = boilerPart.name
     }
   }, [lastCrumb, boilerPart])
 
-  const loadBoilerPart = async () => {
+  const loadBoilerPart = useCallback(async () => {
     try {
       const data = await getBoilerPartFx(`/boiler-parts/find/${query.partId}`)
 
       if (!data) {
-        setError(true)
+        setError(true) // Обработка ошибки
         return
       }
 
-      setBoilerPart(data)
+      setBoilerPart(data) // Установка данных в состояние
     } catch (error) {
-      toast.error((error as Error).message)
+      toast.error((error as Error).message) // Отображение ошибки
     }
-  }
+  }, [query.partId]) // Добавляем query.partId в зависимости
+
+  // const loadBoilerPart = async () => {
+  //   try {
+  //     const data = await getBoilerPartFx(`/boiler-parts/find/${query.partId}`)
+
+  //     if (!data) {
+  //       setError(true)
+  //       return
+  //     }
+
+  //     setBoilerPart(data)
+  //   } catch (error) {
+  //     toast.error((error as Error).message)
+  //   }
+  // }
+
+  useEffect(() => {
+    loadBoilerPart()
+  }, [loadBoilerPart, router.asPath])
 
   return (
     <>

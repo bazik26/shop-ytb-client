@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
+const path = require('path')
+
 const nextConfig = {
   reactStrictMode: true,
   sassOptions: {
-    fiber: false,
+    includePaths: [path.join(__dirname, 'styles')],
+  },
+  webpack: (config) => {
+    config.infrastructureLogging = { level: 'verbose' } // Для отладки Webpack
+    return config
   },
 }
 

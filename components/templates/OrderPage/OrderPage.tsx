@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
   $shoppingCart,
   $totalPrice,
@@ -30,14 +30,6 @@ const OrderPage = () => {
 
   const handleAgreementChange = () => setAgreement(!agreement)
 
-  useEffect(() => {
-    const paymentId = sessionStorage.getItem('paymentId')
-
-    if (paymentId) {
-      checkPayment(paymentId)
-    }
-  }, [])
-
   const makePay = async () => {
     try {
       const data = await makePaymentFx({
@@ -57,30 +49,68 @@ const OrderPage = () => {
     }
   }
 
-  const checkPayment = async (paymentId: string) => {
+  const resetCart = useCallback(async () => {
     try {
-      const data = await checkPaymentFx({
-        url: '/payment/info',
-        paymentId,
-      })
-
-      if (data.status === 'succeeded') {
-        resetCart()
-        return
-      }
-
+      // Удаляем `paymentId` из sessionStorage
       sessionStorage.removeItem('paymentId')
-    } catch (error) {
-      console.log((error as Error).message)
-      resetCart()
-    }
-  }
 
-  const resetCart = async () => {
-    sessionStorage.removeItem('paymentId')
-    await removeFromCartFx(`/shopping-cart/all/${user.userId}`)
-    setShoppingCart([])
-  }
+      // Очищаем корзину на сервере
+      await removeFromCartFx(`/shopping-cart/all/${user.userId}`)
+
+      // Очищаем локальное состояние корзины
+      setShoppingCart([])
+    } catch (error) {
+      console.error('Ошибка при сбросе корзины:', (error as Error).message)
+      toast.error('Не удалось сбросить корзину. Попробуйте еще раз.')
+    }
+  }, [user.userId]) // Убраны лишние зависимости `removeFromCartFx` и `setShoppingCart`
+
+  // const resetCart = useCallback(async () => {
+  //   try {
+  //     // Удаляем paymentId из sessionStorage
+  //     sessionStorage.removeItem('paymentId');
+
+  //     // Очищаем корзину на сервере
+  //     await removeFromCartFx(`/shopping-cart/all/${user.userId}`);
+
+  //     // Очищаем локальное состояние корзины
+  //     setShoppingCart([]);
+  //   } catch (error) {
+  //     // Логируем ошибку для отладки
+  //     console.error('Ошибка при сбросе корзины:', (error as Error).message);
+  //     toast.error('Не удалось сбросить корзину. Попробуйте еще раз.');
+  //   }
+  // }, [user.userId, setShoppingCart]);
+
+  const checkPayment = useCallback(
+    async (paymentId: string) => {
+      try {
+        const data = await checkPaymentFx({
+          url: '/payment/info',
+          paymentId,
+        })
+
+        if (data.status === 'succeeded') {
+          resetCart() // Сбрасываем корзину, если платёж прошёл успешно
+          return
+        }
+
+        sessionStorage.removeItem('paymentId') // Удаляем paymentId, если платёж не успешен
+      } catch (error) {
+        console.error('Ошибка проверки платежа:', (error as Error).message)
+        resetCart() // Сбрасываем корзину в случае ошибки
+      }
+    },
+    [resetCart]
+  )
+
+  useEffect(() => {
+    const paymentId = sessionStorage.getItem('paymentId')
+
+    if (paymentId) {
+      checkPayment(paymentId) // Вызываем стабильную функцию
+    }
+  }, [checkPayment]) // Указываем функцию как зависимость
 
   return (
     <section className={styles.order}>

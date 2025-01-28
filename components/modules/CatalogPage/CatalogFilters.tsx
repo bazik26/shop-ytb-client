@@ -1,7 +1,7 @@
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import CatalogFiltersDesktop from './CatalogFiltersDesktop'
 import { ICatalogFiltersProps } from '@/types/catalog'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import {
   $boilerManufacturers,
@@ -37,11 +37,16 @@ const CatalogFilters = ({
   const partsManufacturers = useStore($partsManufacturers)
   const router = useRouter()
 
-  useEffect(() => {
-    applyFiltersFromQuery()
-  }, [])
+  const updatePriceFromQuery = useCallback(
+    (priceFrom: number, priceTo: number) => {
+      setIsFilterInQuery(true)
+      setPriceRange([+priceFrom, +priceTo])
+      setIsPriceRangeChanged(true)
+    },
+    [setIsFilterInQuery, setPriceRange, setIsPriceRangeChanged]
+  )
 
-  const applyFiltersFromQuery = async () => {
+  const applyFiltersFromQuery = useCallback(async () => {
     try {
       const {
         isValidBoilerQuery,
@@ -121,15 +126,105 @@ const CatalogFilters = ({
 
       toast.error(err.message)
     }
-  }
+  }, [router, currentPage, updatePriceFromQuery, setIsFilterInQuery])
 
-  const updatePriceFromQuery = (priceFrom: number, priceTo: number) => {
-    setIsFilterInQuery(true)
-    setPriceRange([+priceFrom, +priceTo])
-    setIsPriceRangeChanged(true)
-  }
+  useEffect(() => {
+    applyFiltersFromQuery()
+  }, [applyFiltersFromQuery]) // Убедитесь, что все зависимости указаны
 
-  const applyFilters = async () => {
+  // useEffect(() => {
+  //   applyFiltersFromQuery()
+  // }, [])
+
+  // const applyFiltersFromQuery = async () => {
+  //   try {
+  //     const {
+  //       isValidBoilerQuery,
+  //       isValidPartsQuery,
+  //       isValidPriceQuery,
+  //       partsQueryValue,
+  //       priceFromQueryValue,
+  //       boilerQueryValue,
+  //       priceToQueryValue,
+  //     } = checkQueryParams(router)
+
+  //     const boilerQuery = `&boiler=${getQueryParamOnFirstRender(
+  //       'boiler',
+  //       router
+  //     )}`
+  //     const partsQuery = `&parts=${getQueryParamOnFirstRender('parts', router)}`
+  //     const priceQuery = `&priceFrom=${priceFromQueryValue}&priceTo=${priceToQueryValue}`
+
+  //     if (isValidBoilerQuery && isValidPartsQuery && isValidPriceQuery) {
+  //       updateParamsAndFiltersFromQuery(() => {
+  //         updatePriceFromQuery(+priceFromQueryValue, +priceToQueryValue)
+  //         setBoilerManufacturersFromQuery(boilerQueryValue)
+  //         setPartsManufacturersFromQuery(partsQueryValue)
+  //       }, `${currentPage}${priceQuery}${boilerQuery}${partsQuery}`)
+  //       return
+  //     }
+
+  //     if (isValidPriceQuery) {
+  //       updateParamsAndFiltersFromQuery(() => {
+  //         updatePriceFromQuery(+priceFromQueryValue, +priceToQueryValue)
+  //       }, `${currentPage}${priceQuery}`)
+  //     }
+
+  //     if (isValidBoilerQuery && isValidPartsQuery) {
+  //       updateParamsAndFiltersFromQuery(() => {
+  //         setIsFilterInQuery(true)
+  //         setBoilerManufacturersFromQuery(boilerQueryValue)
+  //         setPartsManufacturersFromQuery(partsQueryValue)
+  //       }, `${currentPage}${boilerQuery}${partsQuery}`)
+  //       return
+  //     }
+
+  //     if (isValidBoilerQuery) {
+  //       updateParamsAndFiltersFromQuery(() => {
+  //         setIsFilterInQuery(true)
+  //         setBoilerManufacturersFromQuery(boilerQueryValue)
+  //       }, `${currentPage}${boilerQuery}`)
+  //     }
+
+  //     if (isValidPartsQuery) {
+  //       updateParamsAndFiltersFromQuery(() => {
+  //         setIsFilterInQuery(true)
+  //         setPartsManufacturersFromQuery(partsQueryValue)
+  //       }, `${currentPage}${partsQuery}`)
+  //     }
+
+  //     if (isValidPartsQuery && isValidPriceQuery) {
+  //       updateParamsAndFiltersFromQuery(() => {
+  //         updatePriceFromQuery(+priceFromQueryValue, +priceToQueryValue)
+  //         setPartsManufacturersFromQuery(partsQueryValue)
+  //       }, `${currentPage}${priceQuery}${partsQuery}`)
+  //     }
+
+  //     if (isValidBoilerQuery && isValidPriceQuery) {
+  //       updateParamsAndFiltersFromQuery(() => {
+  //         updatePriceFromQuery(+priceFromQueryValue, +priceToQueryValue)
+  //         setBoilerManufacturersFromQuery(boilerQueryValue)
+  //       }, `${currentPage}${priceQuery}${boilerQuery}`)
+  //     }
+  //   } catch (error) {
+  //     const err = error as Error
+
+  //     if (err.message === 'URI malformed') {
+  //       toast.warning('Неправильный url для фильтров')
+  //       return
+  //     }
+
+  //     toast.error(err.message)
+  //   }
+  // }
+
+  // const updatePriceFromQuery = (priceFrom: number, priceTo: number) => {
+  //   setIsFilterInQuery(true)
+  //   setPriceRange([+priceFrom, +priceTo])
+  //   setIsPriceRangeChanged(true)
+  // }
+
+  const applyFilters = useCallback(async () => {
     setIsFilterInQuery(true)
     try {
       setSpinner(true)
@@ -242,7 +337,17 @@ const CatalogFilters = ({
     } finally {
       setSpinner(false)
     }
-  }
+  }, [
+    setIsFilterInQuery,
+    setSpinner,
+    priceRange,
+    isPriceRangeChanged,
+    boilerManufacturers,
+    partsManufacturers,
+    currentPage,
+    // updateParamsAndFilters,
+    router,
+  ])
 
   return (
     <>

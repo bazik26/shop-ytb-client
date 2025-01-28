@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react'
-import { forwardRef, useEffect } from 'react'
+import { forwardRef, useCallback, useEffect } from 'react'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -34,10 +34,6 @@ const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
     }
 
     useEffect(() => {
-      loadCartItems()
-    }, [])
-
-    useEffect(() => {
       setTotalPrice(
         shoppingCart.reduce(
           (defaultCount, item) => defaultCount + item.total_price,
@@ -46,15 +42,32 @@ const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
       )
     }, [shoppingCart])
 
-    const loadCartItems = async () => {
+    const loadCartItems = useCallback(async () => {
       try {
         const cartItems = await getCartItemsFx(`/shopping-cart/${user.userId}`)
-
-        setShoppingCart(cartItems)
+        setShoppingCart(cartItems) // Установка данных корзины
       } catch (error) {
-        toast.error((error as Error).message)
+        toast.error((error as Error).message) // Обработка ошибки
       }
-    }
+    }, [user.userId]) // Добавляем user.userId в зависимости
+
+    useEffect(() => {
+      loadCartItems() // Вызываем стабильную функцию
+    }, [loadCartItems]) // Указываем loadCartItems как зависимость
+
+    // const loadCartItems = async () => {
+    //   try {
+    //     const cartItems = await getCartItemsFx(`/shopping-cart/${user.userId}`)
+
+    //     setShoppingCart(cartItems)
+    //   } catch (error) {
+    //     toast.error((error as Error).message)
+    //   }
+    // }
+
+    // useEffect(() => {
+    //   loadCartItems()
+    // }, [])
 
     return (
       <div className={styles.cart} ref={ref}>

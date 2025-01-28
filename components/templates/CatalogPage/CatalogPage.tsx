@@ -16,7 +16,7 @@ import { $mode } from '@/context/mode'
 import styles from '@/styles/catalog/index.module.scss'
 import { useStore } from 'effector-react'
 import { AnimatePresence } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import skeletonStyles from '@/styles/skeleton/index.module.scss'
 import CatalogItem from '@/components/modules/CatalogPage/CatalogItem'
@@ -60,69 +60,130 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
   )
   const { toggleOpen, open, closePopup } = usePopup()
 
-  useEffect(() => {
-    loadBoilerParts()
-  }, [filteredBoilerParts, isFilterInQuery])
+  const resetPagination = useCallback(
+    (data: IBoilerParts) => {
+      setCurrentPage(0) // Сбрасываем текущую страницу
+      setBoilerParts(data) // Устанавливаем данные
+    },
+    [setCurrentPage, setBoilerParts]
+  )
 
-  console.log(boilerParts.rows)
+  const loadBoilerParts = useCallback(async () => {
+    setSpinner(true)
 
-  const loadBoilerParts = async () => {
     try {
-      setSpinner(true)
+      // Получаем данные с сервера
       const data = await getBoilerPartsFx('/boiler-parts?limit=20&offset=0')
 
+      // Проверка на корректность offset
       if (!isValidOffset) {
-        router.replace({
-          query: {
-            offset: 1,
-          },
-        })
-
+        router.replace({ query: { offset: 1 } })
         resetPagination(data)
         return
       }
 
-      if (isValidOffset) {
-        if (+query.offset > Math.ceil(data.count / 20)) {
-          router.push(
-            {
-              query: {
-                ...query,
-                offset: 1,
-              },
-            },
-            undefined,
-            { shallow: true }
-          )
+      const offset = +query.offset - 1
 
-          setCurrentPage(0)
-          setBoilerParts(isFilterInQuery ? filteredBoilerParts : data)
-          return
-        }
-
-        const offset = +query.offset - 1
-        const result = await getBoilerPartsFx(
-          `/boiler-parts?limit=20&offset=${offset}`
-        )
-
-        setCurrentPage(offset)
-        setBoilerParts(isFilterInQuery ? filteredBoilerParts : result)
+      // Проверка на выход за пределы доступных страниц
+      if (+query.offset > Math.ceil(data.count / 20)) {
+        router.push({ query: { ...query, offset: 1 } }, undefined, {
+          shallow: true,
+        })
+        resetPagination(data)
         return
       }
 
-      setCurrentPage(0)
-      setBoilerParts(isFilterInQuery ? filteredBoilerParts : data)
+      // Получение данных с учетом offset
+      const result = await getBoilerPartsFx(
+        `/boiler-parts?limit=20&offset=${offset}`
+      )
+
+      // Установка данных
+      setCurrentPage(offset)
+      setBoilerParts(isFilterInQuery ? filteredBoilerParts : result)
     } catch (error) {
       toast.error((error as Error).message)
     } finally {
-      setTimeout(() => setSpinner(false), 1000)
+      setSpinner(false) // Скрываем спиннер без задержки
     }
-  }
+  }, [
+    router,
+    query.offset,
+    isValidOffset,
+    resetPagination,
+    setCurrentPage,
+    setBoilerParts,
+    filteredBoilerParts,
+    isFilterInQuery,
+  ])
 
-  const resetPagination = (data: IBoilerParts) => {
-    setCurrentPage(0)
-    setBoilerParts(data)
-  }
+  useEffect(() => {
+    loadBoilerParts()
+  }, [filteredBoilerParts, isFilterInQuery])
+
+  // console.log(boilerParts.rows)
+
+  // const resetPagination = (data: IBoilerParts) => {
+  //   setCurrentPage(0)
+  //   setBoilerParts(data)
+  // }
+
+  // const loadBoilerParts = async () => {
+  //   try {
+  //     setSpinner(true)
+  //     const data = await getBoilerPartsFx('/boiler-parts?limit=20&offset=0')
+
+  //     if (!isValidOffset) {
+  //       router.replace({
+  //         query: {
+  //           offset: 1,
+  //         },
+  //       })
+
+  //       resetPagination(data)
+  //       return
+  //     }
+
+  //     if (isValidOffset) {
+  //       if (+query.offset > Math.ceil(data.count / 20)) {
+  //         router.push(
+  //           {
+  //             query: {
+  //               ...query,
+  //               offset: 1,
+  //             },
+  //           },
+  //           undefined,
+  //           { shallow: true }
+  //         )
+
+  //         setCurrentPage(0)
+  //         setBoilerParts(isFilterInQuery ? filteredBoilerParts : data)
+  //         return
+  //       }
+
+  //       const offset = +query.offset - 1
+  //       const result = await getBoilerPartsFx(
+  //         `/boiler-parts?limit=20&offset=${offset}`
+  //       )
+
+  //       setCurrentPage(offset)
+  //       setBoilerParts(isFilterInQuery ? filteredBoilerParts : result)
+  //       return
+  //     }
+
+  //     setCurrentPage(0)
+  //     setBoilerParts(isFilterInQuery ? filteredBoilerParts : data)
+  //   } catch (error) {
+  //     toast.error((error as Error).message)
+  //   } finally {
+  //     setTimeout(() => setSpinner(false), 1000)
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   loadBoilerParts();
+  // }, [loadBoilerParts]);
 
   const handlePageChange = async ({ selected }: { selected: number }) => {
     try {
