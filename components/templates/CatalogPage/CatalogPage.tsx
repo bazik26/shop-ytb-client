@@ -60,13 +60,18 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
   )
   const { toggleOpen, open, closePopup } = usePopup()
 
-  const resetPagination = useCallback(
-    (data: IBoilerParts) => {
-      setCurrentPage(0) 
-      setBoilerParts(data)
-    },
-    [setCurrentPage, setBoilerParts]
-  )
+  // const resetPagination = useCallback(
+  //   (data: IBoilerParts) => {
+  //     setCurrentPage(0)
+  //     setBoilerParts(data)
+  //   },
+  //   [setCurrentPage, setBoilerParts]
+  // )
+
+  const resetPagination = useCallback((data: IBoilerParts) => {
+    setCurrentPage(0)
+    setBoilerParts(data)
+  }, [])
 
   const loadBoilerParts = useCallback(async () => {
     setSpinner(true)
@@ -273,7 +278,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
               </ul>
             ) : (
               <ul className={styles.catalog__list}>
-                {boilerParts.rows?.length ? (
+                {boilerParts?.rows && boilerParts.rows.length > 0 ? (
                   boilerParts.rows.map((item) => (
                     <CatalogItem item={item} key={item.id} />
                   ))

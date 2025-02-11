@@ -33,14 +33,16 @@ const CatalogItem = ({ item }: { item: IBoilerPart }) => {
           <h3 className={styles.catalog__list__item__title}>{item.name}</h3>
         </Link>
         <span className={styles.catalog__list__item__stock}>
-                {item.in_stock > 0 ? (
-                  <span className={styles.catalog__list__item__stock__success}>
-                    В наличии
-                  </span>
-                ) : (
-                  <span className={styles.catalog__list__item__stock__not}>Продана</span>
-                )}
-              </span>
+          {item.in_stock > 0 ? (
+            <span className={styles.catalog__list__item__stock__success}>
+              В наличии
+            </span>
+          ) : (
+            <span className={styles.catalog__list__item__stock__not}>
+              Продана
+            </span>
+          )}
+        </span>
         <span className={styles.catalog__list__item__code}>
           VIN: {item.vendor_code}
         </span>

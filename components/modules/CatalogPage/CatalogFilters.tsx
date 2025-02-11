@@ -131,7 +131,7 @@ const CatalogFilters = ({
   useEffect(() => {
     applyFiltersFromQuery()
   }, [applyFiltersFromQuery])
-  
+
   const applyFilters = useCallback(async () => {
     setIsFilterInQuery(true)
     try {

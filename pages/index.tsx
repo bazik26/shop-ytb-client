@@ -16,7 +16,7 @@
 //         <link rel="icon" type="image/svg" sizes="32x32" href="/img/logo.svg" />
 //       </Head>
 //       {shouldLoadContent && <AuthPage />}
-      
+
 //     </>
 //   )
 // }

@@ -5,12 +5,6 @@ import { $boilerPart } from '@/context/boilerPart'
 import { $mode } from '@/context/mode'
 import PartImagesList from '@/components/modules/PartPage/PartImagesList'
 import { formatPrice } from '@/utils/common'
-import { $shoppingCart } from '@/context/shopping-cart'
-import CartHoverCheckedSvg from '@/components/elements/CartHoverCheckedSvg/CartHoverCheckedSvg'
-import CartHoverSvg from '@/components/elements/CartHoverSvg/CartHoverSvg'
-import spinnerStyles from '@/styles/spinner/index.module.scss'
-import { toggleCartItem } from '@/utils/shopping-cart'
-import { $user } from '@/context/user'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import PartTabs from '@/components/modules/PartPage/PartTabs'
 import DashboardSlider from '@/components/modules/DashboardPage/DashboardSlider'
@@ -21,19 +15,18 @@ import {
   setBoilerPartsByPopularity,
 } from '@/context/boilerParts'
 import PartAccordion from '@/components/modules/PartPage/PartAccordion'
-import { removeFromCartFx } from '@/app/api/shopping-cart'
 import styles from '@/styles/part/index.module.scss'
 
 const PartPage = () => {
   const mode = useStore($mode)
-  const user = useStore($user)
+  // const user = useStore($user)
   const isMobile = useMediaQuery(850)
   const boilerPart = useStore($boilerPart)
   const boilerParts = useStore($boilerParts)
-  const cartItems = useStore($shoppingCart)
+  // const cartItems = useStore($shoppingCart)
   const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
-  const isInCart = cartItems.some((item) => item.partId === boilerPart.id)
-  const spinnerToggleCart = useStore(removeFromCartFx.pending)
+  // const isInCart = cartItems.some((item) => item.partId === boilerPart.id)
+  // const spinnerToggleCart = useStore(removeFromCartFx.pending)
   const spinnerSlider = useStore(getBoilerPartsFx.pending)
 
   useEffect(() => {
@@ -51,8 +44,8 @@ const PartPage = () => {
     }
   }
 
-  const toggleToCart = () =>
-    toggleCartItem(user.username, boilerPart.id, isInCart)
+  // const toggleToCart = () =>
+  //   toggleCartItem(user.username, boilerPart.id, isInCart)
 
   return (
     <section>
