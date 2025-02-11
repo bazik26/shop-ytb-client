@@ -25,13 +25,24 @@ const CatalogItem = ({ item }: { item: IBoilerPart }) => {
 
   return (
     <li className={`${styles.catalog__list__item} ${darkModeClass}`}>
-      <img src={JSON.parse(item.images)[0]} alt={item.name} />
+      <div className={styles.catalog__list__item__imghold}>
+        <img src={JSON.parse(item.images)[0]} alt={item.name} />
+      </div>
       <div className={styles.catalog__list__item__inner}>
         <Link href={`/catalog/${item.id}`} passHref legacyBehavior>
           <h3 className={styles.catalog__list__item__title}>{item.name}</h3>
         </Link>
+        <span className={styles.catalog__list__item__stock}>
+                {item.in_stock > 0 ? (
+                  <span className={styles.catalog__list__item__stock__success}>
+                    В наличии
+                  </span>
+                ) : (
+                  <span className={styles.catalog__list__item__stock__not}>Продана</span>
+                )}
+              </span>
         <span className={styles.catalog__list__item__code}>
-          Артикул: {item.vendor_code}
+          VIN: {item.vendor_code}
         </span>
         <span className={styles.catalog__list__item__price}>
           {formatPrice(item.price)} P

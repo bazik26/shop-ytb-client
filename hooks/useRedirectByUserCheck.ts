@@ -15,27 +15,45 @@ const useRedirectByUserCheck = (isAuthPage = false) => {
     }
   }, [])
 
+  // const checkUser = async () => {
+  //   const user = await checkUserAuthFx('/users/login-check')
+
+  //   if (isAuthPage) {
+  //     if (!user) {
+  //       setShouldLoadContent(true)
+  //       return
+  //     }
+
+  //     router.push('/dashboard')
+  //     return
+  //   }
+
+  //   if (user) {
+  //     setUser(user)
+  //     setShouldLoadContent(true)
+  //     return
+  //   }
+
+  //   router.push('/')
+  // }
+
   const checkUser = async () => {
     const user = await checkUserAuthFx('/users/login-check')
-
-    if (isAuthPage) {
-      if (!user) {
-        setShouldLoadContent(true)
-        return
-      }
-
-      router.push('/dashboard')
+  
+    if (user?.guest) {
+      setShouldLoadContent(true) // ✅ Разрешаем загрузку каталога без входа
       return
     }
-
+  
     if (user) {
       setUser(user)
       setShouldLoadContent(true)
       return
     }
-
-    router.push('/')
+  
+    setShouldLoadContent(true) // ✅ Позволяем гостям пользоваться сайтом
   }
+  
 
   return { shouldLoadContent }
 }

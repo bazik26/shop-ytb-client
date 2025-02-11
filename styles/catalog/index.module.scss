@@ -698,6 +698,13 @@
         }
       }
 
+      // &__imghold {
+      //   width: 200px;
+      //   display: flex;
+      //   align-items: center;
+      //   justify-content: center;
+      // }
+
       img {
         width: 100%;
         // height: 184px;
@@ -723,6 +730,20 @@
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
+        }
+      }
+
+      &__stock {
+        font-size: 14px;
+        display: block;
+        margin-bottom: 24px;
+  
+        &__success {
+          color: #04b19e;
+        }
+  
+        &__not {
+          color: #e0595d;
         }
       }
 

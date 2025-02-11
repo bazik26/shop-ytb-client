@@ -62,8 +62,8 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
 
   const resetPagination = useCallback(
     (data: IBoilerParts) => {
-      setCurrentPage(0) // Сбрасываем текущую страницу
-      setBoilerParts(data) // Устанавливаем данные
+      setCurrentPage(0) 
+      setBoilerParts(data)
     },
     [setCurrentPage, setBoilerParts]
   )
@@ -114,70 +114,6 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
     router.query.priceFrom,
     router.query.priceTo,
   ])
-
-  // console.log(boilerParts.rows)
-
-  // const resetPagination = (data: IBoilerParts) => {
-  //   setCurrentPage(0)
-  //   setBoilerParts(data)
-  // }
-
-  // const loadBoilerParts = async () => {
-  //   try {
-  //     setSpinner(true)
-  //     const data = await getBoilerPartsFx('/boiler-parts?limit=20&offset=0')
-
-  //     if (!isValidOffset) {
-  //       router.replace({
-  //         query: {
-  //           offset: 1,
-  //         },
-  //       })
-
-  //       resetPagination(data)
-  //       return
-  //     }
-
-  //     if (isValidOffset) {
-  //       if (+query.offset > Math.ceil(data.count / 20)) {
-  //         router.push(
-  //           {
-  //             query: {
-  //               ...query,
-  //               offset: 1,
-  //             },
-  //           },
-  //           undefined,
-  //           { shallow: true }
-  //         )
-
-  //         setCurrentPage(0)
-  //         setBoilerParts(isFilterInQuery ? filteredBoilerParts : data)
-  //         return
-  //       }
-
-  //       const offset = +query.offset - 1
-  //       const result = await getBoilerPartsFx(
-  //         `/boiler-parts?limit=20&offset=${offset}`
-  //       )
-
-  //       setCurrentPage(offset)
-  //       setBoilerParts(isFilterInQuery ? filteredBoilerParts : result)
-  //       return
-  //     }
-
-  //     setCurrentPage(0)
-  //     setBoilerParts(isFilterInQuery ? filteredBoilerParts : data)
-  //   } catch (error) {
-  //     toast.error((error as Error).message)
-  //   } finally {
-  //     setTimeout(() => setSpinner(false), 1000)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   loadBoilerParts();
-  // }, [loadBoilerParts]);
 
   const handlePageChange = async ({ selected }: { selected: number }) => {
     try {
@@ -236,32 +172,24 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
   const resetFilters = async () => {
     try {
       setSpinner(true)
-
-      // Получаем весь список товаров
       const data = await getBoilerPartsFx('/boiler-parts?limit=20&offset=0')
-
-      // Удаляем фильтры из параметров URL
       router.push(
         {
-          query: { offset: 1 }, // Устанавливаем начальную страницу
+          query: { offset: 1 },
         },
         undefined,
         { shallow: true }
       )
-
-      // Сбрасываем состояния производителей и фильтров
       setBoilerManufacturers(
         boilerManufacturers.map((item) => ({ ...item, checked: false }))
       )
       setPartsManufacturers(
         partsManufacturers.map((item) => ({ ...item, checked: false }))
       )
-
-      // Сбрасываем состояние фильтров
-      setBoilerParts(data) // Устанавливаем весь каталог
-      setPriceRange([1000, 9000]) // Сбрасываем диапазон цен
-      setIsPriceRangeChanged(false) // Убираем флаг изменения цен
-      setIsFilterInQuery(false) // Сбрасываем флаг применения фильтров
+      setBoilerParts(data)
+      setPriceRange([1000, 9000])
+      setIsPriceRangeChanged(false)
+      setIsFilterInQuery(false)
     } catch (error) {
       toast.error((error as Error).message)
     } finally {

@@ -112,7 +112,7 @@ const HeaderBottom = () => {
               <span
                 className={`${styles.header__logo__link__text} ${darkModeClass}`}
               >
-                My Euro Car Автопригон
+                CARS <br /> EURO
               </span>
             </a>
           </Link>
@@ -122,7 +122,7 @@ const HeaderBottom = () => {
         </div>
         <div className={styles.header__shopping_cart}>
           {!isMedia950 && <ModeToggler />}
-          <CartPopup />
+          {/* <CartPopup /> */}
         </div>
       </div>
     </div>

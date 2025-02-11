@@ -1,22 +1,62 @@
-import AuthPage from '@/components/templates/AuthPage/AuthPage'
-import useRedirectByUserCheck from '@/hooks/useRedirectByUserCheck'
-import Head from 'next/head'
+// import AuthPage from '@/components/templates/AuthPage/AuthPage'
+// import DashboardPage from '@/components/templates/DashboardPage/DashboardPage'
+// import useRedirectByUserCheck from '@/hooks/useRedirectByUserCheck'
+// import Head from 'next/head'
 
-function Auth() {
-  const { shouldLoadContent } = useRedirectByUserCheck(true)
+// function Auth() {
+//   const { shouldLoadContent } = useRedirectByUserCheck(true)
+
+//   return (
+//     <>
+//       <Head>
+//         <title>Аква Термикс | {shouldLoadContent ? 'Авторизация' : ''}</title>
+//         <meta charSet="UTF-8" />
+//         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+//         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+//         <link rel="icon" type="image/svg" sizes="32x32" href="/img/logo.svg" />
+//       </Head>
+//       {shouldLoadContent && <AuthPage />}
+      
+//     </>
+//   )
+// }
+
+// export default Auth
+
+import Head from 'next/head'
+import Layout from '@/components/layout/Layout'
+import DashboardPage from '@/components/templates/DashboardPage/DashboardPage'
+import useRedirectByUserCheck from '@/hooks/useRedirectByUserCheck'
+import Breadcrumbs from '@/components/modules/Breadcrumbs/Breadcrumbs'
+
+function Dashboard() {
+  const { shouldLoadContent } = useRedirectByUserCheck()
+  const getDefaultTextGenerator = () => ''
+  const getTextGenerator = () => ''
 
   return (
     <>
       <Head>
-        <title>Аква Термикс | {shouldLoadContent ? 'Авторизация' : ''}</title>
+        <title>Аква Тепмикс | {shouldLoadContent ? 'Главная' : ''}</title>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/svg" sizes="32x32" href="/img/logo.svg" />
       </Head>
-      {shouldLoadContent && <AuthPage />}
+      {shouldLoadContent && (
+        <Layout>
+          <main>
+            <Breadcrumbs
+              getDefaultTextGenerator={getDefaultTextGenerator}
+              getTextGenerator={getTextGenerator}
+            />
+            <DashboardPage />
+            <div className="overlay" />
+          </main>
+        </Layout>
+      )}
     </>
   )
 }
 
-export default Auth
+export default Dashboard

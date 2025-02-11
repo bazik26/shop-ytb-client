@@ -79,7 +79,7 @@ const PartPage = () => {
               <span className={styles.part__info__code}>
                 VIN: {boilerPart.vendor_code}
               </span>
-              <button
+              {/* <button
                 className={`${styles.part__info__btn} ${
                   isInCart ? styles.in_cart : ''
                 }`}
@@ -102,7 +102,7 @@ const PartPage = () => {
                     )}
                   </>
                 )}
-              </button>
+              </button> */}
               {!isMobile && <PartTabs />}
             </div>
           </div>
