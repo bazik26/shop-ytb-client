@@ -31,6 +31,7 @@ export const boilerManufacturers = [
   'Peugeot',
   'Porsche',
   'Renault',
+  'SSang Yong',
   'Skoda',
   'Subaru',
   'Suzuki',

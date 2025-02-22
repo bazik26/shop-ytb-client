@@ -16,168 +16,18 @@ const BrandsSlider = () => {
   const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
 
   const brandItems = [
-    {
-      id: 1,
-      img: '/img/brands/Снимок экрана 2025-01-16 162205.png',
-      darkImg: '/img/brands/Снимок экрана 2025-01-16 1622051.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 2,
-      img: '/img/brands/SKODA.png',
-      darkImg: '/img/brands/SKODA.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 3,
-      img: '/img/brands/RENAULT.png',
-      darkImg: '/img/brands/RENAULT1.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 4,
-      img: '/img/brands/PORSCHE.png',
-      darkImg: '/img/brands/PORSCHE.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 5,
-      img: '/img/brands/PEUGEOT.png',
-      darkImg: '/img/brands/PEUGEOT1.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 6,
-      img: '/img/brands/OPEL.png',
-      darkImg: '/img/brands/OPEL1.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 7,
-      img: '/img/brands/NISSAN.png',
-      darkImg: '/img/brands/NISSAN1.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 8,
-      img: '/img/brands/MITSUBISHI.png',
-      darkImg: '/img/brands/MITSUBISHI.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 9,
-      img: '/img/brands/MERCEDES.png',
-      darkImg: '/img/brands/MERCEDES.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 10,
-      img: '/img/brands/MAZDA.png',
-      darkImg: '/img/brands/MAZDA.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 11,
-      img: '/img/brands/LEXUS.png',
-      darkImg: '/img/brands/LEXUS1.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 12,
-      img: '/img/brands/LAND_ROVER.png',
-      darkImg: '/img/brands/LAND_ROVER.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 13,
-      img: '/img/brands/KIA.png',
-      darkImg: '/img/brands/KIA.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 14,
-      img: '/img/brands/HYUNDAI.png',
-      darkImg: '/img/brands/HYUNDAI.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 15,
-      img: '/img/brands/HONDA.png',
-      darkImg: '/img/brands/HONDA.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 16,
-      img: '/img/brands/HAVAL.png',
-      darkImg: '/img/brands/HAVAL1.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 17,
-      img: '/img/brands/GEELY.png',
-      darkImg: '/img/brands/GEELY.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 18,
-      img: '/img/brands/FORD.png',
-      darkImg: '/img/brands/FORD.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 19,
-      img: '/img/brands/CITROEN.png',
-      darkImg: '/img/brands/CITROEN1.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 20,
-      img: '/img/brands/CHEVROLET.png',
-      darkImg: '/img/brands/CHEVROLET.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 21,
-      img: '/img/brands/CHERY.png',
-      darkImg: '/img/brands/CHERY.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 22,
-      img: '/img/brands/BMW.png',
-      darkImg: '/img/brands/BMW.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 23,
-      img: '/img/brands/AUDI.png',
-      darkImg: '/img/brands/AUDI1.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 24,
-      img: '/img/brands/VOLKSWAGEN.png',
-      darkImg: '/img/brands/VOLKSWAGEN.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 25,
-      img: '/img/brands/TOYOTA.png',
-      darkImg: '/img/brands/TOYOTA1.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 26,
-      img: '/img/brands/SUZUKI.png',
-      darkImg: '/img/brands/SUZUKI.png',
-      alt: 'brand-1',
-    },
-    {
-      id: 27,
-      img: '/img/brands/SUBARU.png',
-      darkImg: '/img/brands/SUBARU.png',
-      alt: 'brand-1',
-    },
+    { id: 1, img: '/img/brand-1.png', alt: 'brand-1' },
+    { id: 2, img: '/img/brand-3.png', alt: 'brand-3' },
+    { id: 3, img: '/img/brand-2.svg', alt: 'brand-2' },
+    { id: 4, img: '/img/brand-4.png', alt: 'brand-4' },
+    { id: 5, img: '/img/brand-1.png', alt: 'brand-1' },
+    { id: 6, img: '/img/brand-3.png', alt: 'brand-3' },
+    { id: 7, img: '/img/brand-2.svg', alt: 'brand-2' },
+    { id: 8, img: '/img/brand-1.png', alt: 'brand-1' },
+    { id: 9, img: '/img/brand-3.png', alt: 'brand-3' },
+    { id: 10, img: '/img/brand-4.png', alt: 'brand-4' },
+    { id: 11, img: '/img/brand-2.svg', alt: 'brand-2' },
+    { id: 12, img: '/img/brand-1.png', alt: 'brand-1' },
   ]
 
   useEffect(() => {
@@ -209,7 +59,7 @@ const BrandsSlider = () => {
           key={item.id}
           style={{ width: isMedia768 ? 124 : 180 }}
         >
-          <img src={mode === 'dark' ? item.darkImg : item.img} alt={item.alt} />
+          <img src={item.img} alt={item.alt} />
         </div>
       ))}
     </Slider>
