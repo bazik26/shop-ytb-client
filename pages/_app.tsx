@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app'
-import Head from 'next/head'
 import { withHydrate } from 'effector-next'
 import { useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
@@ -29,11 +28,6 @@ function App({ Component, pageProps }: AppProps) {
   return (
     mounted && (
       <>
-        <Head>
-          {/* Мета-тег для подтверждения Яндекс.Вебмастера */}
-          <meta name="yandex-verification" content="16d84bd4db80e8d0" />
-        </Head>
-
         <NextNProgress />
         <Component {...pageProps} />
         <ToastContainer
