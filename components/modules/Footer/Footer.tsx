@@ -108,7 +108,7 @@ const Footer = () => {
           </div>
         </div>
         <div className={styles.footer__bottom}>
-          <div className={styles.footer__bottom__block}>
+          {/* <div className={styles.footer__bottom__block}>
             <div className={styles.footer__bottom__block__left}>
               <h3 className={styles.footer__bottom__block__title}>
                 Мы принимаем к оплате:
@@ -159,7 +159,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
           {isMedia750 && <FooterLogo />}
           <div className={styles.footer__bottom__block}>
             <p className={styles.footer__bottom__block__copyright}>

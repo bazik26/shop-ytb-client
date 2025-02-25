@@ -162,10 +162,14 @@
 
     &__link {
       position: absolute;
-      top: -17px;
+      top: -40px;
       left: 7px;
       display: flex;
       align-items: center;
+
+      &.dark_mode {
+        top: -25px;
+      }
 
       @media (max-width: 580px) {
         position: initial;

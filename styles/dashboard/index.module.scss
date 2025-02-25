@@ -278,7 +278,7 @@
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     overflow: hidden;
-    padding: 24px 16px;
+    // padding: 24px 16px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
     @media (max-width: 560px) {
@@ -299,6 +299,10 @@
         height: 99px;
         margin-bottom: 16px;
       }
+    }
+
+    &__inner {
+      margin: 10px;
     }
 
     &__title {

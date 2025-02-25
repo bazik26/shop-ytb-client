@@ -279,9 +279,9 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
             ) : (
               <ul className={styles.catalog__list}>
                 {boilerParts?.rows && boilerParts.rows.length > 0 ? (
-                  boilerParts.rows.map((item) => (
-                    <CatalogItem item={item} key={item.id} />
-                  ))
+                  boilerParts.rows
+                    .filter((item) => Number(item.bestseller) !== 1) // Приводим к числу
+                    .map((item) => <CatalogItem item={item} key={item.id} />)
                 ) : (
                   <span>Список товаров пуст...</span>
                 )}

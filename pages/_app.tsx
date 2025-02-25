@@ -13,6 +13,16 @@ function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     setMounted(true)
+
+    // Добавляем JivoChat динамически
+    const script = document.createElement('script')
+    script.src = '//code.jivosite.com/widget/gNbKuWhZqe'
+    script.async = true
+    document.body.appendChild(script)
+
+    return () => {
+      document.body.removeChild(script) // Очистка при размонтировании (если нужно)
+    }
   }, [])
 
   return (

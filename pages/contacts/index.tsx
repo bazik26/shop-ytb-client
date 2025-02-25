@@ -11,11 +11,16 @@ function Contacts() {
   return (
     <>
       <Head>
-        <title>Аква Тепмикс | Контакты</title>
+        <title> Cars Euro | Контакты</title>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/svg" sizes="32x32" href="/img/logo.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
+        <meta
+          name="description"
+          content="Свяжитесь с нами для консультаций и вопросов.
+        Контактная информация Cars Euro — мы всегда рады помочь вам."
+        />
       </Head>
       <Layout>
         <main>

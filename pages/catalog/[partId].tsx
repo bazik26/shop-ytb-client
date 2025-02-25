@@ -67,11 +67,11 @@ function CatalogPartPage({ query }: { query: IQueryParams }) {
   return (
     <>
       <Head>
-        <title>Аква Тепмикс | {shouldLoadContent ? boilerPart.name : ''}</title>
+        <title> Cars Euro | {shouldLoadContent ? boilerPart.name : ''}</title>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/svg" sizes="32x32" href="/img/logo.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
       </Head>
       {error ? (
         <Custom404 />

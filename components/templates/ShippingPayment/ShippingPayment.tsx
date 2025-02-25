@@ -137,37 +137,38 @@ const ShippingPayment = () => {
             )}
           </div>
         </div>
-      </div>
-      <h2 className={`${styles.shipping_payment__title} ${darkModeClass}`}>
-        Экономия на растаможке: Почему выгодно заказывать авто через нас?
-      </h2>
-      <p className={styles.shipping_payment__tabs__content__text}>
-        При ввозе автомобиля в Россию стоимость таможенных платежей существенно
-        зависит от цели ввоза. Для физических лиц действует льготный
-        утилизационный сбор, который значительно снижает итоговую стоимость
-        машины. Например, при покупке авто за 10 000 € (около 958 000 ₽) разница
-        в таможенных сборах следующая: Для личного пользования: ~929 000 ₽ На
-        коммерцию: ~2 098 000 ₽ Экономия – более 1 169 000 ₽! Почему с нами
-        выгодно? Мы помогаем нашим клиентам приобретать автомобили по более
-        низкой цене, оптимизируя процесс растаможки. Благодаря нашему опыту, вы
-        получаете надежное авто с минимальными затратами.
-      </p>
-      <div className={`${styles.shipping_payment__block}`}>
-        <div
-          className={`${styles.shipping_payment__block__img} ${styles.shipping_payment__block__img__top}`}
-        >
-          <Image src="/img/drom1.jpg" alt="drom1" width={500} height={300} />
+        <h2 className={`${styles.shipping_payment__title} ${darkModeClass}`}>
+          Экономия на растаможке: Почему выгодно заказывать авто через нас?
+        </h2>
+        <p className={`${styles.shipping_payment__text} ${darkModeClass}`}>
+          При ввозе автомобиля в Россию стоимость таможенных платежей
+          существенно зависит от цели ввоза. Для физических лиц действует
+          льготный утилизационный сбор, который значительно снижает итоговую
+          стоимость машины. Например, при покупке авто за 10 000 € (около 958
+          000 ₽) разница в таможенных сборах следующая: Для личного пользования:
+          ~929 000 ₽ На коммерцию: ~2 098 000 ₽ Экономия – более 1 169 000 ₽!
+          Почему с нами выгодно? Мы помогаем нашим клиентам приобретать
+          автомобили по более низкой цене, оптимизируя процесс растаможки.
+          Благодаря нашему опыту, вы получаете надежное авто с минимальными
+          затратами.
+        </p>
+        <div className={`${styles.shipping_payment__block}`}>
+          <div
+            className={`${styles.shipping_payment__block__img} ${styles.shipping_payment__block__img__top}`}
+          >
+            <Image src="/img/drom1.jpg" alt="drom1" width={500} height={500} />
+          </div>
+          <div
+            className={`${styles.shipping_payment__block__img} ${styles.shipping_payment__block__img__bottom}`}
+          >
+            <Image src="/img/drom2.jpg" alt="drom2" width={500} height={500} />
+          </div>
         </div>
-        <div
-          className={`${styles.shipping_payment__block__img} ${styles.shipping_payment__block__img__bottom}`}
-        >
-          <Image src="/img/drom2.jpg" alt="drom2" width={500} height={300} />
-        </div>
+        <p className={`${styles.shipping_payment__text} ${darkModeClass}`}>
+          Расчет стоимости автомобиля для примера. Информация взята с сайта
+          drom.ru.
+        </p>
       </div>
-      <p className={styles.shipping_payment__tabs__content__text}>
-        Расчет стоимости автомобиля для примера. Информация взята с сайта
-        drom.ru.
-      </p>
     </section>
   )
 }
