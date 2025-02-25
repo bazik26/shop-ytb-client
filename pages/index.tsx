@@ -48,7 +48,7 @@ function Dashboard() {
         Предлагаем широкий выбор европейских авто по доступным ценам. Узнайте больше на нашем сайте."
         />
         <meta name="yandex-verification" content="16d84bd4db80e8d0" />
-        {/* <script src="//code.jivosite.com/widget/gNbKuWhZqe" async></script> */}
+        <script src="//code.jivosite.com/widget/gNbKuWhZqe" async></script>
       </Head>
       {shouldLoadContent && (
         <Layout>
