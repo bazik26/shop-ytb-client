@@ -163,7 +163,7 @@ const Footer = () => {
           {isMedia750 && <FooterLogo />}
           <div className={styles.footer__bottom__block}>
             <p className={styles.footer__bottom__block__copyright}>
-              © ООО «ТЛТТРАНС» 2019.
+              © ООО «ТЛТТРАНС» 2019. Партнер ООО «АВТО-С»
             </p>
           </div>
         </div>
