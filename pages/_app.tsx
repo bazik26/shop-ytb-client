@@ -45,11 +45,12 @@ function App({ Component, pageProps }: AppProps) {
         </Script>
 
         {/* Fallback для пользователей без JS */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <noscript>
           <div>
             <img
               src="https://top-fwz1.mail.ru/counter?id=3618651;js=na"
-              style={{ position: "absolute", left: "-9999px" }}
+              style={{ position: 'absolute', left: '-9999px' }}
               alt="Top.Mail.Ru"
             />
           </div>
