@@ -22,15 +22,13 @@ const Footer = () => {
             <div className={styles.footer__top__item}>
               {!isMedia500 && (
                 <>
-                  <h3 className={styles.footer__top__item__title}>
-                    Интернет-магазин
-                  </h3>
+                  <h3 className={styles.footer__top__item__title}>Авто</h3>
                   <OnlineStoreContent />
                 </>
               )}
               {isMedia500 && (
                 <Accordion
-                  title="Интернет-магазин"
+                  title="Авто"
                   titleClass={styles.footer__top__item__title}
                   arrowOpenClass={styles.open}
                 >

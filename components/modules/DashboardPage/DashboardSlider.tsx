@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/jsx-key */
 import Slider from 'react-slick'
 import { useStore } from 'effector-react'
 import 'slick-carousel/slick/slick.css'
@@ -15,8 +16,8 @@ import styles from '@/styles/dashboard/index.module.scss'
 const DashboardSlider = ({
   items,
   spinner,
-  goToPartPage,
-}: IDashboardSlider) => {
+}: // goToPartPage,
+IDashboardSlider) => {
   const isMedia768 = useMediaQuery(768)
   const isMedia1366 = useMediaQuery(1366)
   const isMedia800 = useMediaQuery(800)
@@ -31,7 +32,7 @@ const DashboardSlider = ({
       const list = item.querySelector('.slick-list') as HTMLElement
 
       // list.style.height = isMedia560 ? '276px' : '390px'
-      list.style.padding = '0 5px'
+      list.style.padding = '5px 5px'
       list.style.marginRight = isMedia560 ? '-8px' : isMedia800 ? '-15px' : '0'
     })
   }, [isMedia560, isMedia800])
@@ -66,32 +67,24 @@ const DashboardSlider = ({
         ))
       ) : items.length ? (
         items.map((item) => (
-          <div
-            className={`${styles.dashboard__slide} ${darkModeClass}`}
-            key={item.id}
-            style={width}
-          >
-            <img src={JSON.parse(item.images)[0]} alt={item.name} />
-            <div className={styles.dashboard__slide__inner}>
-              <Link
-                href={goToPartPage ? `/catalog/${item.id}` : '/catalog'}
-                passHref
-                legacyBehavior
-              >
-                <a href="">
-                  <h3 className={styles.dashboard__slide__title}>
-                    {item.name}
-                  </h3>
-                </a>
-              </Link>
-              <span className={styles.dashboard__slide__code}>
-                VIN: {item.vendor_code}
-              </span>
-              <span className={styles.dashboard__slide__price}>
-                {formatPrice(item.price)} P
-              </span>
+          <Link href={`/catalog/${item.id}`} passHref legacyBehavior>
+            <div
+              className={`${styles.dashboard__slide} ${darkModeClass}`}
+              key={item.id}
+              style={width}
+            >
+              <img src={JSON.parse(item.images)[0]} alt={item.name} />
+              <div className={styles.dashboard__slide__inner}>
+                <h3 className={styles.dashboard__slide__title}>{item.name}</h3>
+                <span className={styles.dashboard__slide__code}>
+                  VIN: {item.vendor_code}
+                </span>
+                <span className={styles.dashboard__slide__price}>
+                  {formatPrice(item.price)} P
+                </span>
+              </div>
             </div>
-          </div>
+          </Link>
         ))
       ) : (
         <span>Список товаров пуст....</span>

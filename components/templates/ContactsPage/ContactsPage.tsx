@@ -41,7 +41,9 @@ const ContactsPage = ({ isWholesaleBuyersPage = false }) => {
               </li>
               <li className={`${styles.contacts__list__item} ${darkModeClass}`}>
                 <span>Офис:</span>
-                <span>Самарская область. Тольятти. Южное шоссе, 24. 445004. Офис 202</span>
+                <span>
+                  Самарская область. Тольятти. Южное шоссе, 24. 445004. Офис 202
+                </span>
               </li>
               {/* <li className={`${styles.contacts__list__item} ${darkModeClass}`}>
                 <span>Склад:</span>
@@ -66,8 +68,7 @@ const ContactsPage = ({ isWholesaleBuyersPage = false }) => {
               <li className={`${styles.contacts__list__item} ${darkModeClass}`}>
                 <span>E-mail:</span>
                 <span className={styles.contacts__list__item__mail}>
-                  {!isMobile560 && <MailSvg />}{' '}
-                  <span>myeurocar@mail.ru</span>
+                  {!isMobile560 && <MailSvg />} <span>myeurocar@mail.ru</span>
                 </span>
               </li>
             </ul>

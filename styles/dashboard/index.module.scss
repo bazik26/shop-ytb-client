@@ -282,7 +282,7 @@
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
     @media (max-width: 560px) {
-      padding: 16px 8px;
+      // padding: 16px 8px;
     }
 
     &:hover {

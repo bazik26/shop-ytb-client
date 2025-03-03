@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import type { AppProps } from 'next/app'
 import { withHydrate } from 'effector-next'
 import { useEffect, useState } from 'react'
