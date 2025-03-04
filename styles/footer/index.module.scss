@@ -94,7 +94,7 @@
             color: #cdcbcb;
 
             &:hover {
-              color: #ffc540;
+              // color: #ffc540;
               transition: color 0.2s ease-in-out;
             }
           }
@@ -102,51 +102,61 @@
       }
 
       &__contacts {
-        & li:not(:last-child) {
-          margin-bottom: 22px;
+        & li {
+          position: relative; /* Чтобы позиционировать span */
+          min-height: 40px; /* Фикс проблемы со смещением */
+          
+          &:not(:last-child) {
+            margin-bottom: 22px;
+          }
         }
-
+      
         & li a {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           position: relative;
-
+          text-decoration: none;
+      
           & span {
             display: block;
-
-            &:nth-child(1) {
+            transition: color 0.2s ease-in-out;
+      
+            &:first-child {
               margin-bottom: 4px;
             }
-
-            &:nth-child(2) {
+      
+            &:nth-of-type(2) { /* Основной текст */
               padding-left: 22px;
               font-weight: 500;
               font-size: 18px;
               color: #fafbfc;
-              transition: color 0.2s ease-in-out;
             }
-
-            &:nth-child(3) {
+      
+            &:nth-of-type(3) { /* SVG иконка */
               position: absolute;
               top: 25px;
               left: 0;
-
+              // transform: translateY(-50%); /* Центрируем */
+              
               & svg {
                 stroke: #fafbfc;
                 transition: stroke 0.2s ease-in-out;
               }
             }
           }
-
-          &:hover span {
+      
+          /* Ховер работает корректно во всех браузерах */
+          &:hover span:nth-of-type(2) {
             color: #ffc540;
-            transition: color 0.2s ease-in-out;
           }
-
-          &:hover span svg {
+      
+          &:hover span:nth-of-type(3) svg {
             stroke: #ffc540;
-            transition: stroke 0.2s ease-in-out;
           }
         }
       }
+      
 
       &__title {
         width: 100%;
