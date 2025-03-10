@@ -94,9 +94,13 @@
             color: #cdcbcb;
 
             &:hover {
-              // color: #ffc540;
+              color: #ffc540;
               transition: color 0.2s ease-in-out;
             }
+          }
+
+          &__linkd {
+            color: #cdcbcb;
           }
         }
       }
@@ -120,7 +124,7 @@
       
           & span {
             display: block;
-            transition: color 0.2s ease-in-out;
+            // transition: color 0.2s ease-in-out;
       
             &:first-child {
               margin-bottom: 4px;
@@ -352,7 +356,7 @@
         align-items: center;
 
         &__item {
-          height: 48px;
+          // height: 48px;
           border-radius: 6px;
           overflow: hidden;
 
@@ -372,6 +376,7 @@
           & img {
             object-fit: cover;
             max-width: 100%;
+            width: 70px;
           }
         }
       }
@@ -416,8 +421,8 @@
           }
 
           & a {
-            width: 48px;
-            height: 48px;
+            // width: 48px;
+            // height: 48px;
             display: block;
 
             @media (max-width: 950px) {
@@ -428,7 +433,16 @@
           }
 
           &_vk {
-            background-image: url('/img/vk.svg');
+            // background-image: url('/img/telegram.png');
+            transition: transform 0.2s ease-in-out;
+
+            &:hover {
+              transform: scale(1.1);
+            }
+
+            & img {
+              width: 40px;
+            }
           }
 
           &_fb {

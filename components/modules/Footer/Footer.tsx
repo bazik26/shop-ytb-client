@@ -1,4 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+/* eslint-disable prettier/prettier */
+// eslint-disable-next-line prettier/prettier
+
 import styles from '@/styles/footer/index.module.scss'
 import FooterLogo from './FooterLogo'
 import OnlineStoreContent from './OnlineStoreContent'
@@ -64,7 +67,7 @@ const Footer = () => {
               <li className={styles.footer__top__item__list__item}>
                 <a
                   href="https://yandex.ru/maps/-/CHafFJnl"
-                  className={styles.footer__top__item__list__item__link}
+                  className={styles.footer__top__item__list__item__linkd}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -81,7 +84,7 @@ const Footer = () => {
               <li className={styles.footer__top__item__list__item}>
                 <a
                   href="tel:+79111011809"
-                  className={styles.footer__top__item__list__item__link}
+                  className={styles.footer__top__item__list__item__linkd}
                 >
                   <span>Наш контактный телефон:</span>
                   <span>+7 (981) 767-08-91</span>
@@ -93,7 +96,7 @@ const Footer = () => {
               <li className={styles.footer__top__item__list__item}>
                 <a
                   href="mailto:myeurocar@mail.ru"
-                  className={styles.footer__top__item__list__item__link}
+                  className={styles.footer__top__item__list__item__linkd}
                 >
                   <span>E-mail:</span>
                   <span>myeurocar@mail.ru</span>
@@ -106,23 +109,32 @@ const Footer = () => {
           </div>
         </div>
         <div className={styles.footer__bottom}>
-          {/* <div className={styles.footer__bottom__block}>
+          <div className={styles.footer__bottom__block}>
             <div className={styles.footer__bottom__block__left}>
               <h3 className={styles.footer__bottom__block__title}>
                 Мы принимаем к оплате:
               </h3>
               <ul className={styles.footer__bottom__block__pay}>
-                <li className={styles.footer__bottom__block__pay__item}>
+                {/* <li className={styles.footer__bottom__block__pay__item}>
                   <img src="/img/pay.png" alt="apple-pay" />
+                </li> */}
+                <li className={styles.footer__bottom__block__pay__item}>
+                  <img
+                    src="/img/pay/mir-svgrepo-com.svg"
+                    alt="master-card"
+                  />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
-                  <img src="/img/gpay.png" alt="google-pay" />
+                  <img
+                    src="/img/pay/mastercard-svgrepo-com.svg"
+                    alt="master-card"
+                  />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
-                  <img src="/img/master-card.png" alt="master-card" />
-                </li>
-                <li className={styles.footer__bottom__block__pay__item}>
-                  <img src="/img/visa.png" alt="visa" />
+                  <img
+                    src="/img/pay/visa-svgrepo-com.svg"
+                    alt="visa"
+                  />
                 </li>
               </ul>
             </div>
@@ -133,11 +145,14 @@ const Footer = () => {
               <ul className={styles.footer__bottom__block__social}>
                 <li className={styles.footer__bottom__block__social__item}>
                   <a
-                    href="#"
+                    href="https://t.me/cars_euro"
+                    target="_blank"
                     className={styles.footer__bottom__block__social__item_vk}
-                  />
+                  >
+                    <img src="/img/telegram.png" alt="visa" />
+                  </a>
                 </li>
-                <li className={styles.footer__bottom__block__social__item}>
+                {/* <li className={styles.footer__bottom__block__social__item}>
                   <a
                     href="#"
                     className={styles.footer__bottom__block__social__item_fb}
@@ -154,10 +169,10 @@ const Footer = () => {
                     href="#"
                     className={styles.footer__bottom__block__social__item_ytb}
                   />
-                </li>
+                </li> */}
               </ul>
             </div>
-          </div> */}
+          </div>
           {isMedia750 && <FooterLogo />}
           <div className={styles.footer__bottom__block}>
             <p className={styles.footer__bottom__block__copyright}>
