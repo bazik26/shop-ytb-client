@@ -80,6 +80,21 @@ const Footer = () => {
                     <MarkerSvg />
                   </span>
                 </a>
+                <a
+                  href="https://yandex.ru/maps/-/CHB-7N4M"
+                  className={styles.footer__top__item__list__item__linkd}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Наш адрес:</span>
+                  <span>
+                    Мурманская обл. Мурманск. Книповича, 23. 183025. Офис
+                    119
+                  </span>
+                  <span>
+                    <MarkerSvg />
+                  </span>
+                </a>
               </li>
               <li className={styles.footer__top__item__list__item}>
                 <a
