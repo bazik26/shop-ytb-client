@@ -25,7 +25,7 @@ const ContactsPage = ({ isWholesaleBuyersPage = false }) => {
                 <span>
                   Условия оптовых заказов решаются индивидуально по телефону:{' '}
                 </span>
-                <span>+7 (981) 767-08-91</span>
+                <span>+7 (913) 870-40-87</span>
               </p>
               <p>
                 Либо опишите суть заказа в форме обратной связи и мы с вами
@@ -55,7 +55,7 @@ const ContactsPage = ({ isWholesaleBuyersPage = false }) => {
               </li>
               <li className={`${styles.contacts__list__item} ${darkModeClass}`}>
                 <span>Наш контактный телефон:</span>
-                <span>+7 (981) 767-08-91</span>
+                <span>+7 (913) 870-40-87</span>
               </li>
               <li className={`${styles.contacts__list__item} ${darkModeClass}`}>
                 <span>Время приемок завок:</span>
