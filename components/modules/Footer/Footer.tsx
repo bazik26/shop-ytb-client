@@ -87,7 +87,7 @@ const Footer = () => {
                   className={styles.footer__top__item__list__item__linkd}
                 >
                   <span>Наш контактный телефон:</span>
-                  <span>+7 (981) 767-08-91</span>
+                  <span>+7 (913) 870-40-87</span>
                   <span>
                     <PhoneSvg />
                   </span>
