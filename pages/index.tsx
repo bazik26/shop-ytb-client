@@ -37,17 +37,40 @@ function Dashboard() {
   return (
     <>
       <Head>
-        <title> Cars Euro | {shouldLoadContent ? 'Главная' : ''}</title>
+        <title>{shouldLoadContent ? 'Cars Euro | Главная' : 'Cars Euro'}</title>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        {/* Favicon */}
         <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
+
+        {/* SEO МЕТАТЕГИ */}
         <meta
           name="description"
-          content="Ваш надёжный партнёр в мире автомобилей.
-        Предлагаем широкий выбор европейских авто по доступным ценам. Узнайте больше на нашем сайте."
+          content="Ваш надёжный партнёр в мире автомобилей. 
+          Предлагаем широкий выбор европейских авто по доступным ценам. Узнайте больше на нашем сайте."
         />
+        <meta name="keywords" content="авто из Европы, купить авто, автомобили, продажа авто, автопригон" />
+        <meta name="author" content="Cars Euro" />
+
+        {/* Управление индексированием */}
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph (для соцсетей) */}
+        <meta property="og:title" content="Cars Euro – Автомобили из Европы" />
+        <meta property="og:description" content="Купить авто из Европы по выгодной цене с гарантией качества!" />
+        <meta property="og:image" content="/img/logo.png" />
+        <meta property="og:url" content="https://cars-euro.com/" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card (для Twitter) */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Cars Euro – Продажа автомобилей из Европы" />
+        <meta name="twitter:description" content="Надёжный автопригон и продажа авто из Европы." />
+        <meta name="twitter:image" content="/img/logo.png" />
       </Head>
+
       {shouldLoadContent && (
         <Layout>
           <main>
