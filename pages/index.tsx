@@ -23,7 +23,9 @@
 
 // export default Auth
 
-import Head from 'next/head'
+/* eslint-disable max-len */
+
+import { NextSeo } from 'next-seo'
 import Layout from '@/components/layout/Layout'
 import DashboardPage from '@/components/templates/DashboardPage/DashboardPage'
 import useRedirectByUserCheck from '@/hooks/useRedirectByUserCheck'
@@ -31,87 +33,75 @@ import Breadcrumbs from '@/components/modules/Breadcrumbs/Breadcrumbs'
 
 function Dashboard() {
   const { shouldLoadContent } = useRedirectByUserCheck()
-  const getDefaultTextGenerator = () => ''
-  const getTextGenerator = () => ''
+  const metaTitle = shouldLoadContent
+    ? 'Cars Euro – Купить авто из Европы под заказ'
+    : 'Cars Euro'
+  const metaDescription =
+    'Ваш надёжный партнёр в мире автомобилей. Предлагаем широкий выбор европейских авто по доступным ценам. Узнайте больше на нашем сайте.'
 
   return (
     <>
-      <Head>
-        <title>
-          {shouldLoadContent
-            ? 'Cars Euro – Купить авто из Европы под заказ'
-            : 'Cars Euro'}
-        </title>
-        <meta charSet="UTF-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="canonical" href="https://cars-euro.com/" />
-
-        {/* Favicon */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="96x96"
-          href="/favicon-96x96.png"
-        />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <meta name="apple-mobile-web-app-title" content="Cars Euro" />
-        <link rel="manifest" href="/site.webmanifest" />
-
-        {/* SEO МЕТАТЕГИ */}
-        <meta
-          name="description"
-          content="Ваш надёжный партнёр в мире автомобилей.
-          Предлагаем широкий выбор европейских авто по доступным ценам. Узнайте больше на нашем сайте."
-        />
-        <meta
-          name="keywords"
-          content="авто из Европы, купить авто, автомобили, продажа авто, автопригон"
-        />
-        <meta name="author" content="Cars Euro" />
-
-        {/* Управление индексированием */}
-        <meta name="robots" content="index, follow" />
-
-        {/* Open Graph (для соцсетей) */}
-        <meta property="og:title" content="Cars Euro – Автомобили из Европы" />
-        <meta
-          property="og:description"
-          content="Купить авто из Европы по выгодной цене с гарантией качества!"
-        />
-        <meta property="og:image" content="/img/logo.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:url" content="https://cars-euro.com/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="ru_RU" />
-
-        {/* Twitter Card (для Twitter) */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Cars Euro – Продажа автомобилей из Европы"
-        />
-        <meta
-          name="twitter:description"
-          content="Надёжный автопригон и продажа авто из Европы."
-        />
-        <meta name="twitter:image" content="/img/logo.png" />
-      </Head>
+      <NextSeo
+        title={metaTitle}
+        description={metaDescription}
+        canonical="https://cars-euro.com/"
+        openGraph={{
+          title: metaTitle,
+          description: metaDescription,
+          url: 'https://cars-euro.com/',
+          type: 'website',
+          locale: 'ru_RU',
+          site_name: 'Cars Euro',
+          images: [
+            {
+              url: 'https://cars-euro.com/img/logo.png',
+              width: 1200,
+              height: 630,
+              alt: 'Cars Euro',
+            },
+          ],
+        }}
+        twitter={{
+          cardType: 'summary_large_image',
+        }}
+        additionalMetaTags={[
+          {
+            name: 'keywords',
+            content:
+              'авто из Европы, купить авто, автомобили, продажа авто, автопригон',
+          },
+          {
+            name: 'author',
+            content: 'Cars Euro',
+          },
+          {
+            name: 'robots',
+            content: 'index, follow',
+          },
+        ]}
+        additionalLinkTags={[
+          {
+            rel: 'icon',
+            href: '/favicon.ico',
+          },
+          {
+            rel: 'apple-touch-icon',
+            sizes: '180x180',
+            href: '/apple-touch-icon.png',
+          },
+          {
+            rel: 'manifest',
+            href: '/site.webmanifest',
+          },
+        ]}
+      />
 
       {shouldLoadContent && (
         <Layout>
           <main>
             <Breadcrumbs
-              getDefaultTextGenerator={getDefaultTextGenerator}
-              getTextGenerator={getTextGenerator}
+              getDefaultTextGenerator={() => ''}
+              getTextGenerator={() => ''}
             />
             <DashboardPage />
             <div className="overlay" />
