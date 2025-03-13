@@ -1,18 +1,18 @@
-/* eslint-disable max-len */
-
 import Head from 'next/head'
+import { GetServerSideProps } from 'next'
 import Layout from '@/components/layout/Layout'
 import DashboardPage from '@/components/templates/DashboardPage/DashboardPage'
 import useRedirectByUserCheck from '@/hooks/useRedirectByUserCheck'
 import Breadcrumbs from '@/components/modules/Breadcrumbs/Breadcrumbs'
 
-function Dashboard() {
+function Dashboard({
+  metaTitle,
+  metaDescription,
+}: {
+  metaTitle: string
+  metaDescription: string
+}) {
   const { shouldLoadContent } = useRedirectByUserCheck()
-  const metaTitle = shouldLoadContent
-    ? 'Cars Euro – Купить авто из Европы под заказ'
-    : 'Cars Euro'
-  const metaDescription =
-    'Ваш надёжный партнёр в мире автомобилей. Предлагаем широкий выбор европейских авто по доступным ценам. Узнайте больше на нашем сайте.'
 
   return (
     <>
@@ -41,18 +41,16 @@ function Dashboard() {
         <meta name="apple-mobile-web-app-title" content="Cars Euro" />
         <link rel="manifest" href="/site.webmanifest" />
 
-        {/* SEO МЕТАТЕГИ */}
+        {/* SEO Meta Tags */}
         <meta name="description" content={metaDescription} />
         <meta
           name="keywords"
           content="авто из Европы, купить авто, автомобили, продажа авто, автопригон"
         />
         <meta name="author" content="Cars Euro" />
-
-        {/* Управление индексированием */}
         <meta name="robots" content="index, follow" />
 
-        {/* Open Graph (для соцсетей) */}
+        {/* Open Graph Meta Tags */}
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta
@@ -65,7 +63,7 @@ function Dashboard() {
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="ru_RU" />
 
-        {/* Twitter Card (для Twitter) */}
+        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metaTitle} />
         <meta name="twitter:description" content={metaDescription} />
@@ -92,3 +90,15 @@ function Dashboard() {
 }
 
 export default Dashboard
+
+// 🚀 Теперь страница будет рендериться на сервере (SSR)
+export const getServerSideProps: GetServerSideProps = async () => {
+  console.log('🔍 getServerSideProps вызван на сервере!')
+  return {
+    props: {
+      metaTitle: 'Cars Euro – Купить авто из Европы под заказ',
+      metaDescription:
+        'Ваш надёжный партнёр в мире автомобилей. Лучшие авто по низким ценам!',
+    },
+  }
+}

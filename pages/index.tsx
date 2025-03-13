@@ -25,76 +25,57 @@
 
 /* eslint-disable max-len */
 
-import { NextSeo } from 'next-seo'
+import Head from 'next/head'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import Layout from '@/components/layout/Layout'
 import DashboardPage from '@/components/templates/DashboardPage/DashboardPage'
 import useRedirectByUserCheck from '@/hooks/useRedirectByUserCheck'
 import Breadcrumbs from '@/components/modules/Breadcrumbs/Breadcrumbs'
 
-function Dashboard() {
+function Dashboard({
+  metaTitle,
+  metaDescription,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { shouldLoadContent } = useRedirectByUserCheck()
-  const metaTitle = shouldLoadContent
-    ? 'Cars Euro – Купить авто из Европы под заказ'
-    : 'Cars Euro'
-  const metaDescription =
-    'Ваш надёжный партнёр в мире автомобилей. Предлагаем широкий выбор европейских авто по доступным ценам. Узнайте больше на нашем сайте.'
 
   return (
     <>
-      <NextSeo
-        title={metaTitle}
-        description={metaDescription}
-        canonical="https://cars-euro.com/"
-        openGraph={{
-          title: metaTitle,
-          description: metaDescription,
-          url: 'https://cars-euro.com/',
-          type: 'website',
-          locale: 'ru_RU',
-          site_name: 'Cars Euro',
-          images: [
-            {
-              url: 'https://cars-euro.com/img/logo.png',
-              width: 1200,
-              height: 630,
-              alt: 'Cars Euro',
-            },
-          ],
-        }}
-        twitter={{
-          cardType: 'summary_large_image',
-        }}
-        additionalMetaTags={[
-          {
-            name: 'keywords',
-            content:
-              'авто из Европы, купить авто, автомобили, продажа авто, автопригон',
-          },
-          {
-            name: 'author',
-            content: 'Cars Euro',
-          },
-          {
-            name: 'robots',
-            content: 'index, follow',
-          },
-        ]}
-        additionalLinkTags={[
-          {
-            rel: 'icon',
-            href: '/favicon.ico',
-          },
-          {
-            rel: 'apple-touch-icon',
-            sizes: '180x180',
-            href: '/apple-touch-icon.png',
-          },
-          {
-            rel: 'manifest',
-            href: '/site.webmanifest',
-          },
-        ]}
-      />
+      <Head>
+        <title>{metaTitle}</title>
+        <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="canonical" href="https://cars-euro.com/" />
+
+        {/* SEO Meta Tags */}
+        <meta name="description" content={metaDescription} />
+        <meta
+          name="keywords"
+          content="авто из Европы, купить авто, автомобили, продажа авто, автопригон"
+        />
+        <meta name="author" content="Cars Euro" />
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta
+          property="og:image"
+          content="https://cars-euro.com/img/logo.png"
+        />
+        <meta property="og:url" content="https://cars-euro.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="ru_RU" />
+
+        {/* Twitter Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={metaTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta
+          name="twitter:image"
+          content="https://cars-euro.com/img/logo.png"
+        />
+      </Head>
 
       {shouldLoadContent && (
         <Layout>
@@ -113,3 +94,15 @@ function Dashboard() {
 }
 
 export default Dashboard
+
+// 🚀 Теперь страница будет рендериться на сервере (SSR)
+// eslint-disable-next-line arrow-body-style
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {
+      metaTitle: 'Купить авто из Европы под заказ – Cars Euro',
+      metaDescription:
+        'Ваш надёжный партнёр в мире автомобилей. Лучшие авто по низким ценам!',
+    },
+  }
+}
