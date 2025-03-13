@@ -39,7 +39,7 @@ function Dashboard() {
       <Head>
         <title>
           {shouldLoadContent
-            ? 'Купить авто из Европы под заказ – Cars Euro'
+            ? 'Cars Euro – Купить авто из Европы под заказ'
             : 'Cars Euro'}
         </title>
         <meta charSet="UTF-8" />
