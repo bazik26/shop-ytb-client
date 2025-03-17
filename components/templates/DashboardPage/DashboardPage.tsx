@@ -85,7 +85,7 @@ const DashboardPage = () => {
         </h2>
         <div className={styles.dashboard__parts}>
           <h3 className={`${styles.dashboard__parts__title} ${darkModeClass}`}>
-            Проданые автомобили
+            Проданные автомобили
           </h3>
           <DashboardSlider items={bestsellers.rows || []} spinner={spinner} />
         </div>
