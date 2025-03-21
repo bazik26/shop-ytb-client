@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cars-euro.com/sitemap.xml

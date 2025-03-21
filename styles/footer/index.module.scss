@@ -109,58 +109,59 @@
         & li {
           position: relative; /* Чтобы позиционировать span */
           min-height: 40px; /* Фикс проблемы со смещением */
-          
+
           &:not(:last-child) {
             margin-bottom: 22px;
           }
         }
-      
+
         & li a {
           display: flex;
           flex-direction: column;
           justify-content: center;
           position: relative;
           text-decoration: none;
-      
+
           & span {
             display: block;
             // transition: color 0.2s ease-in-out;
-      
+
             &:first-child {
               margin-bottom: 4px;
             }
-      
-            &:nth-of-type(2) { /* Основной текст */
+
+            &:nth-of-type(2) {
+              /* Основной текст */
               padding-left: 22px;
               font-weight: 500;
               font-size: 18px;
               color: #fafbfc;
             }
-      
-            &:nth-of-type(3) { /* SVG иконка */
+
+            &:nth-of-type(3) {
+              /* SVG иконка */
               position: absolute;
               top: 25px;
               left: 0;
               // transform: translateY(-50%); /* Центрируем */
-              
+
               & svg {
                 stroke: #fafbfc;
                 transition: stroke 0.2s ease-in-out;
               }
             }
           }
-      
+
           /* Ховер работает корректно во всех браузерах */
           &:hover span:nth-of-type(2) {
             color: #ffc540;
           }
-      
+
           &:hover span:nth-of-type(3) svg {
             stroke: #ffc540;
           }
         }
       }
-      
 
       &__title {
         width: 100%;

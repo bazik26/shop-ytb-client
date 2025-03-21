@@ -73,8 +73,7 @@ const Footer = () => {
                 >
                   <span>Наш адрес:</span>
                   <span>
-                    Самарская обл. Тольятти. Южное шоссе, 24. 445004. Офис
-                    202
+                    Самарская обл. Тольятти. Южное шоссе, 24. 445004. Офис 202
                   </span>
                   <span>
                     <MarkerSvg />
@@ -88,8 +87,7 @@ const Footer = () => {
                 >
                   <span>Партнеры:</span>
                   <span>
-                    Мурманская обл. Мурманск. Книповича, 23. 183025. Офис
-                    119
+                    Мурманская обл. Мурманск. Книповича, 23. 183025. Офис 119
                   </span>
                   <span>
                     <MarkerSvg />
@@ -134,10 +132,7 @@ const Footer = () => {
                   <img src="/img/pay.png" alt="apple-pay" />
                 </li> */}
                 <li className={styles.footer__bottom__block__pay__item}>
-                  <img
-                    src="/img/pay/mir-svgrepo-com.svg"
-                    alt="master-card"
-                  />
+                  <img src="/img/pay/mir-svgrepo-com.svg" alt="master-card" />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
                   <img
@@ -146,10 +141,7 @@ const Footer = () => {
                   />
                 </li>
                 <li className={styles.footer__bottom__block__pay__item}>
-                  <img
-                    src="/img/pay/visa-svgrepo-com.svg"
-                    alt="visa"
-                  />
+                  <img src="/img/pay/visa-svgrepo-com.svg" alt="visa" />
                 </li>
               </ul>
             </div>
