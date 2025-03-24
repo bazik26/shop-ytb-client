@@ -25,7 +25,7 @@ const ContactsPage = ({ isWholesaleBuyersPage = false }) => {
                 <span>
                   Условия оптовых заказов решаются индивидуально по телефону:{' '}
                 </span>
-                <span>+7 (910) 693-90-76</span>
+                <span> +7 (910) 693-90-76</span>
               </p>
               <p>
                 Либо опишите суть заказа в форме обратной связи и мы с вами
@@ -40,7 +40,7 @@ const ContactsPage = ({ isWholesaleBuyersPage = false }) => {
                 </h3>
               </li>
               <li className={`${styles.contacts__list__item} ${darkModeClass}`}>
-                <span>Офис:</span>
+                <span>Офис: </span>
                 <span>
                   Самарская область. Тольятти. Южное шоссе, 24. 445004. Офис 202
                 </span>
@@ -50,23 +50,23 @@ const ContactsPage = ({ isWholesaleBuyersPage = false }) => {
                 <span> г. Москва, ул. ... д....</span>
               </li> */}
               <li className={`${styles.contacts__list__item} ${darkModeClass}`}>
-                <span>График работы офиса:</span>
-                <span> пн-пс: с 8:00 до 22:00</span>
+                <span>График работы офиса: </span>
+                <span> Без выходных</span>
               </li>
               <li className={`${styles.contacts__list__item} ${darkModeClass}`}>
-                <span>Наш контактный телефон:</span>
+                <span>Наш контактный телефон: </span>
                 <span>+7 (910) 693-90-76</span>
               </li>
               <li className={`${styles.contacts__list__item} ${darkModeClass}`}>
-                <span>Время приемок завок:</span>
+                <span>Время приемок завок: </span>
                 <span> Пн-Вс: с 8:00 до 22:00</span>
               </li>
               <li className={`${styles.contacts__list__item} ${darkModeClass}`}>
-                <span>Прием заказов электронным способом на сайте:</span>
+                <span>Прием заказов электронным способом на сайте: </span>
                 <span>Круглосуточно</span>
               </li>
               <li className={`${styles.contacts__list__item} ${darkModeClass}`}>
-                <span>E-mail:</span>
+                <span>E-mail: </span>
                 <span className={styles.contacts__list__item__mail}>
                   {!isMobile560 && <MailSvg />} <span>myeurocar@mail.ru</span>
                 </span>
